@@ -10,7 +10,5 @@ Zarity is a Flutter application that displays a list of blogs. It uses the Provi
 
 
 ## Demo
-<video width="250" height="500" controls>
-  <source src="assets/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+![Watch the video](https://drive.google.com/file/d/1pYSkXDa50GnwCu-WEUbfCuhNITHzkcBh/view?usp=sharing)
