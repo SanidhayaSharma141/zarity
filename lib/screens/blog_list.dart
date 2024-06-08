@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:zarity/model/blog_post.dart';
 import 'package:zarity/provider/blog_provider.dart';
 import 'package:zarity/screens/blog_item_preview.dart';
+import 'package:zarity/screens/hive_data_screen.dart';
 
 class BlogListScreen extends StatefulWidget {
   const BlogListScreen({super.key});
-
   @override
   _BlogListScreenState createState() => _BlogListScreenState();
 }
@@ -22,6 +23,7 @@ class _BlogListScreenState extends State<BlogListScreen> {
         alignment: 0.2);
   }
 
+  bool flag = false;
   @override
   Widget build(BuildContext context) {
     final blogProvider = Provider.of<BlogProvider>(context);
@@ -31,6 +33,12 @@ class _BlogListScreenState extends State<BlogListScreen> {
       appBar: AppBar(
         title: const Text('Blog Posts'),
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const HiveDataScreen()));
+              },
+              icon: const Icon(Icons.verified)),
           if (blogs.isNotEmpty)
             DropdownButton<String>(
               value: selectedTitle,

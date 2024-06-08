@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zarity/provider/blog_provider.dart';
@@ -24,8 +25,8 @@ class BlogDetailScreen extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  blog.imageUrl,
+                child: CachedNetworkImage(
+                  imageUrl: blog.imageUrl,
                   width: double.infinity > 600 ? 600 : double.infinity,
                   height: 250,
                   fit: BoxFit.cover,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -35,8 +36,8 @@ class BlogItemPreview extends StatelessWidget {
                 topLeft: Radius.circular(10.0),
                 topRight: Radius.circular(10.0),
               ),
-              child: Image.network(
-                blog.imageUrl,
+              child: CachedNetworkImage(
+                imageUrl: blog.imageUrl,
                 width: double.infinity > 600 ? 600 : double.infinity,
                 height: 200,
                 fit: BoxFit.cover,

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:zarity/model/blog_post.dart';
 
 void uploadDummyBlogsToFirestore() async {
@@ -57,5 +58,30 @@ Future<void> addBlogPost(BlogPost blogPost) async {
     });
   } catch (e) {
     // print('Failed to add blog post: $e');
+  }
+}
+
+Future<List<BlogPost>> fetchFromFirestore() async {
+  try {
+    final snapshot = await FirebaseFirestore.instance.collection('blogs').get();
+    final List<BlogPost> fetchedBlogs = snapshot.docs.map((doc) {
+      return BlogPost.fromMap(doc.data(), doc.id);
+    }).toList();
+
+    return fetchedBlogs;
+  } catch (e) {
+    // Handle error appropriately
+    rethrow;
+  }
+}
+
+List<BlogPost> loadFromHive(Box<BlogPost> blogBox) {
+  return blogBox.values.toList();
+}
+
+Future<void> saveToHive(Box<BlogPost> blogBox, List<BlogPost> blogs) async {
+  await blogBox.clear(); // Clear old entries before adding new ones
+  for (var blog in blogs) {
+    await blogBox.add(blog);
   }
 }
